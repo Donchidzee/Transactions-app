@@ -6,19 +6,37 @@
 //
 
 import SwiftUI
+import Vision
 
 struct ContentView: View {
+    @State private var selection: Int = 0
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView(selection: $selection) {
+            Tab("Home", systemImage: "house", value: 0) {
+                DashboardView()
+            }
+            
+            Tab("Transactions", systemImage: "dollarsign.square", value: 1) {
+                Color("TransactionsBackground")
+                    .ignoresSafeArea()
+            }
+            
+            Tab("Statistics", systemImage: "chart.pie", value: 2) {
+                Color("TransactionsBackground")
+                    .ignoresSafeArea()
+            }
+            
+            Tab("Settings", systemImage: "gearshape", value: 3) {
+                Color("TransactionsBackground")
+                    .ignoresSafeArea()
+            }
         }
-        .padding()
+        .tint(.accent)
     }
 }
 
 #Preview {
     ContentView()
+        .preferredColorScheme(.dark)
 }
